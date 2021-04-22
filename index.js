@@ -141,6 +141,24 @@ app.post('/user/:id', function (req, res) {
 })
 
 
+app.get('/user/:id/delete', function (req, res) {
+    var notes = JSON.parse(fs.readFileSync('./data.json', 'UTF-8'));
+    var note = notes.find(u => u.id === req.params.id);
+    if (note.name == req.cookies.LoggedIn) {
+
+    var array = JSON.parse(fs.readFileSync('./data.json', 'UTF-8'));
+    console.log(array)
+    const filterArray = array.filter((item) => item.id !== req.params.id);
+    console.log('Deleted')
+    console.log(filterArray)
+    json = JSON.stringify(filterArray); //convert it back to json
+    fs.writeFileSync('./data.json', json, { encoding: 'utf8', flag: 'w' });
+    res.redirect('/user')
+}   else {
+    res.redirect('/')
+}
+})
+
 
 
 
@@ -152,6 +170,7 @@ app.get('/images', function (req, res) {
 app.get('/data.json', function (req, res) {
     res.sendFile(__dirname + '/data.json')
 })
+
 
 
 
