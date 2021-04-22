@@ -1,0 +1,60 @@
+<html>
+    <style>
+                .border {
+          border: 1px solid
+        }
+        .button {
+    background-color: #5BC125;
+    border-radius: 3px;
+
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 9px 23px;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    background-color: #4CB911;
+  }
+
+  .button:active {
+    position: relative;
+    top: 1px;
+  }
+    </style>
+    <body>
+
+        <img src="\images\logo.jpg" height="75" width="auto">
+        <div class="border"></div>
+                
+        <div style="text-align:center">
+            <h3><%=title%></h3>
+            <br>
+            <br>
+            <form id="reform">
+            <textarea name="newtext" rows="8" cols="50"><%=text%></textarea>
+            </form>
+            <br>
+            <br>
+            <div class="button">Save</div>
+
+
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+                $('.button').click(function(){
+                     $.post('/user/<%=id%>',$('#reform').serialize()).done(
+                       function(data){
+                        if(data.redirect) {
+                              window.location.href=data.url;
+                             }
+                        })
+                })
+            })
+        </script>
+</html>

@@ -116,11 +116,28 @@ app.get('/user/:id', function (req, res) {
     var notes = JSON.parse(fs.readFileSync('./data.json', 'UTF-8'));
     var user = notes.find(u => u.id === req.params.id);
     if (user.name == req.cookies.LoggedIn) {
-        res.render(__dirname + '/public/view.ejs', { title: user.title, text: user.text })
+        res.render(__dirname + '/public/view.ejs', { title: user.title, text: user.text, id:user.id })
     }
     else {
         res.redirect('/user')
     }
+})
+
+app.post('/user/:id', function (req, res) {
+    var myArray = JSON.parse(fs.readFileSync('./data.json', 'UTF-8'));
+    objIndex = myArray.findIndex((obj => obj.id == req.params.id));
+
+    console.log(myArray)
+
+    myArray[objIndex].text = req.body.newtext
+
+    console.log(myArray)
+    
+    change = JSON.stringify(myArray);
+
+    fs.writeFileSync('./data.json', change, { encoding: 'utf8', flag: 'w' });
+
+    res.send({ redirect: true, url: "/" });
 })
 
 
