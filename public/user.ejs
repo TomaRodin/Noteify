@@ -1,0 +1,141 @@
+<html>
+<style>
+  .logout {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+  }
+
+  .border {
+    border: 1px solid
+  }
+
+  .topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+  }
+
+  .button {
+    background-color: #5BC125;
+    border-radius: 3px;
+
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 9px 23px;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    background-color: #4CB911;
+  }
+
+  .button:active {
+    position: relative;
+    top: 1px;
+  }
+
+  h3,
+  a,
+  button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .note {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: 100;
+    padding: 20px;
+    background-color: #42CA55;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .note:hover {
+    background: #20C132;
+    border: solid #20C132 1px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-decoration: none;
+  }
+
+  h2,
+  p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 10px
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+</style>
+
+<body>
+  <img src="images/logo.jpg" height="75" width="auto">
+
+  <a class="logout" href="/user/log_out">Log Out</a>
+
+  <div class="border"></div>
+  <br>
+  <a href="/user/new" class="note">New Note</a>
+
+  <br>
+  <br>
+  <div class="wrapper" style="margin-left: 30px;"></div>
+
+
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+  window.onload = function myfunction() {
+
+    $.getJSON("/data.json", function (data) {
+
+      const searchKey = "<%=name%>"
+
+      const searchResult = data.filter(({ name }) => name.toLowerCase() === searchKey.toLowerCase());
+
+
+      const parentWrapper = document.querySelector('.wrapper');
+      data.forEach((el) => {
+        const div = document.createElement('div');
+        div.style.backgroundColor = '#F1F3F4';
+        div.style.borderRadius = '10px';
+        const child = document.createElement('h2');
+        child.textContent = el.title;
+        div.appendChild(child);
+        const link = document.createElement('p')
+        link.textContent = el.text
+        div.appendChild(link)
+        const space = document.createElement('br');
+        parentWrapper.appendChild(space)
+        const edit = document.createElement('a')
+        edit.textContent = "Edit"
+        edit.href = "/user/"+ el.id
+        div.appendChild(edit)
+        parentWrapper.append(div);
+      });
+
+    });
+  }
+</script>
+
+
+</html>

@@ -1,0 +1,76 @@
+<html>
+    
+    <style>
+        .topright {
+          position: absolute;
+          top: 8px;
+          right: 16px;
+          font-size: 18px;
+        }
+        .button {
+        background-color:#5BC125;
+        border-radius:3px;
+        
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:15px;
+        padding:9px 23px;
+        text-decoration:none;
+      }
+      .button:hover {
+        background-color: #4CB911;
+      }
+      .button:active {
+        position:relative;
+        top:1px;
+      }
+      h3, a, button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+    
+    
+    
+    <body>
+    
+    <img src="images/logo.jpg" height="75" width="auto">
+
+      <br>
+      <br>
+    <form style="text-align:center" id="reform">
+      <h3>Username:</h3>
+      <input name="user" type="username">
+      <br>
+      <br>
+      <h3>Password:</h3>
+      <input name="pass" type="password">
+      <br>
+      <br>
+      <button class="butt">Login</button>
+      <br>
+      <br>
+      <a href="/register">Register</a>
+    </form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+              $('.butt').click(function(){
+                   $.post('/',$('#reform').serialize()).done(
+                     function(data){
+                      if(data.redirect) {
+                            window.location.href=data.url;
+                           }
+                      })
+              })
+          })
+      </script>
+
+
+
+    </body>
+</html>
+

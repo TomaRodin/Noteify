@@ -1,0 +1,47 @@
+<html>
+    
+    <style>
+      h3, a, button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+    
+    
+    
+    <body>
+
+      <br>
+      <br>
+    <form style="text-align:center" id="reform">
+      <h3>Username:</h3>
+      <input name="newuser" type="username">
+      <br>
+      <br>
+      <h3>Password:</h3>
+      <input name="newpass" type="password">
+      <br>
+      <br>
+      <button class="butt">Register</button>
+      <br>
+      <br>
+    </form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+              $('.butt').click(function(){
+                   $.post('/register',$('#reform').serialize()).done(
+                     function(data){
+                      if(data.redirect) {
+                            window.location.href=data.url;
+                           }
+                      })
+              })
+          })
+      </script>
+
+
+
+    </body>
+</html>

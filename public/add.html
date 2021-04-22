@@ -1,0 +1,60 @@
+<html>
+    <style>
+                .border {
+          border: 1px solid
+        }
+        .button {
+        background-color:#5BC125;
+        border-radius:3px;
+        
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:15px;
+        padding:9px 23px;
+        text-decoration:none;
+      }
+      .button:hover {
+        background-color: #4CB911;
+      }
+      .button:active {
+        position:relative;
+        top:1px;
+      }
+      h3, a, button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+    <body>
+        <img src="http://localhost:3000/images/logo.jpg" height="75" width="auto">
+        <div class="border"></div>
+
+
+        <form id="reform">
+            <h3>Title:</h3>
+            <input name="title">
+            <h3>Text:</h3>
+            <textarea name="text"></textarea>
+            <br>
+            <br>
+            <div class="button">Add</div>
+        </form>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+                  $('.button').click(function(){
+                       $.post('/user/new',$('#reform').serialize()).done(
+                         function(data){
+                          if(data.redirect) {
+                                window.location.href=data.url;
+                               }
+                          })
+                  })
+              })
+          </script>
+
+
+    </body>
+</html>
