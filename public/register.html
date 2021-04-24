@@ -4,6 +4,41 @@
       h3, a, button {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
+      h3, a, button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .user, .pass  {
+            height:30px;
+            font-size:14pt;
+            border: none; /* <-- This thing here */
+            border:solid 1px #ccc;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .butt {
+    background-color: #5BC125;
+    border: none; /* <-- This thing here */
+    border-radius: 10px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 9px 23px;
+    text-decoration: none;
+  }
+
+  .butt:hover {
+    background-color: #4CB911;
+  }
+
+  .butt:active {
+    position: relative;
+    top: 1px;
+  }
+  .login {
+    text-decoration: none;
+  }
     </style>
     
     
@@ -14,17 +49,17 @@
       <br>
     <form style="text-align:center" id="reform">
       <h3>Username:</h3>
-      <input name="newuser" type="username">
+      <input name="newuser" class="user" type="username">
       <br>
       <br>
       <h3>Password:</h3>
-      <input name="newpass" type="password">
+      <input name="newpass" class="pass" type="password">
       <br>
       <br>
       <button class="butt">Register</button>
       <br>
       <br>
-      <a href="/">Login</a>
+      <a href="/" class="login">Login</a>
     </form>
     
 

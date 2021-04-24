@@ -121,6 +121,9 @@
         const child = document.createElement('h2');
         child.textContent = el.title;
         div.appendChild(child);
+        const time = document.createElement('p')
+        time.textContent = el.date 
+        time.style = "display:inline-block;"
         const link = document.createElement('p')
         link.textContent = el.text
         div.appendChild(link)

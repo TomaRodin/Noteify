@@ -171,6 +171,14 @@ app.get('/data.json', function (req, res) {
     res.sendFile(__dirname + '/data.json')
 })
 
+app.get('user/images/undo.png', function (req, res) {
+    res.sendFile(__dirname + '/public/images/undo.png')
+})
+
+app.get('/images/back.png',function (req, res) {
+    res.sendFile(__dirname + '/public/images/back.png')
+})
+
 
 
 

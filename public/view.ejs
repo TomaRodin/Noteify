@@ -24,18 +24,34 @@
     position: relative;
     top: 1px;
   }
+  .text {
+    border-radius: 10px;
+  }
+  textarea {
+    padding: 5px;
+}
+h3, a, p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.back {
+  height: 70px;
+  width: auto;
+  position:absolute;
+
+}
     </style>
     <body>
 
         <img src="\images\logo.jpg" height="75" width="auto">
         <div class="border"></div>
+        <a href="/user"><img src="/images/back.png" class="back"></a>
                 
         <div style="text-align:center">
             <h3><%=title%></h3>
             <br>
             <br>
             <form id="reform">
-            <textarea name="newtext" rows="8" cols="50"><%=text%></textarea>
+            <textarea name="newtext" class="text" id="text" rows="8" cols="50"><%=text%></textarea>
             </form>
             <br>
             <br>
@@ -43,6 +59,10 @@
             <br>
             <br>
             <a href="/user/<%=id%>/delete"><img src="\images\trash.png" height="40" width="auto"></a>
+            <br>
+            <br>
+            <p>Undo</p>
+            <img src = '/images/undo.png' onclick="undo()" height="40" width="auto">
 
         </div>
     </body>
@@ -58,6 +78,9 @@
                         })
                 })
             })
-
+            function undo() {
+              console.log("Ok")
+              document.getElementById("text").value = "<%=text%>"
+            }
         </script>
 </html>
