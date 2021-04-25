@@ -81,6 +81,14 @@
     display: flex;
     flex-direction: column-reverse;
   }
+  .myInput  {
+            height:30px;
+            font-size:14pt;
+            border: none; /* <-- This thing here */
+            border:solid 1px #ccc;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 </style>
 
 <body>
@@ -90,11 +98,12 @@
 
   <div class="border"></div>
   <br>
+  
   <a href="/user/new" class="note">New Note</a>
-
+  <input class="myInput" id="myInput" placeholder="MyNote...">
   <br>
   <br>
-  <div class="wrapper" style="margin-left: 30px;"></div>
+  <div class="wrapper" id="wrapper" style="margin-left: 30px;"></div>
 
 
 
@@ -138,6 +147,14 @@
 
     });
   }
+    $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#wrapper div").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
 
 
