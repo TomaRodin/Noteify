@@ -1,0 +1,79 @@
+<html>
+    <style>
+          .logout {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+  }
+
+  .border {
+    border: 1px solid
+  }
+
+  .topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+  }
+  h3, a, p {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .settings {
+      text-align: center;
+  }
+    .element1 {display:inline-block;margin-right:10px; width:200px; } 
+    .element2 {display:inline-block; width:200px; } 
+
+
+    #deletebutton {
+	background:linear-gradient(to bottom, #e6192a 5%, #bf1717 100%);
+	background-color:#e6192a;
+	border-radius:20px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:13px 10px;
+	text-decoration:none;
+}
+#deletebutton:hover {
+	background:linear-gradient(to bottom, #bf1717 5%, #e6192a 100%);
+	background-color:#bf1717;
+}
+#deletebutton:active {
+	position:relative;
+	top:1px;
+}
+    </style>
+    <body>
+        <a href="/user"><img src="/images/logo.jpg" height="75" width="auto"></a>
+
+        <a class="logout" href="/user/log_out">Log Out</a>
+      
+        <div class="border"></div>
+        <div class="settings">
+
+            <h3>Settings</h3>
+
+            <div class="delete">
+            <p class="element1">Delete Account</p><a class="element2" id="deletebutton">Delete</a>
+            </div>
+
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+                  
+                  $('#deletebutton').click(function(){
+                    window.location.replace("/");
+                    $.post( "/user/settings/delete" );
+                      
+                  })
+              
+    </script>
+
+
+</html>

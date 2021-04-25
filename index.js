@@ -65,6 +65,7 @@ app.post('/register', function (req, res) {
         })
         var jsonArray = JSON.stringify(array);
         fs.writeFileSync('./users.json', jsonArray, { encoding: 'utf8', flag: 'w' });
+        res.redirect('/')
     }
 })
 
@@ -112,7 +113,7 @@ app.post('/user/new', function (req, res) {
 })
 
 
-app.get('/user/:id', function (req, res) {
+app.get('/user/notes/:id', function (req, res) {
     var notes = JSON.parse(fs.readFileSync('./data.json', 'UTF-8'));
     var user = notes.find(u => u.id === req.params.id);
     if (user.name == req.cookies.LoggedIn) {
@@ -159,7 +160,35 @@ app.get('/user/:id/delete', function (req, res) {
 }
 })
 
+app.get('/user/settings',function(req, res){
+    if (req.cookies.LoggedIn == undefined){
+        res.redirect('/')
+    }
+    else {
+        res.sendFile(__dirname+'/public/settings.html')
+    }
+})
 
+app.post('/user/settings/delete',function(req, res){
+    var array = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'));
+    console.log(array)
+    const filterArray = array.filter((item) => item.name !== req.cookies.LoggedIn);
+    console.log('Deleted')
+    console.log(filterArray)
+    json = JSON.stringify(filterArray); //convert it back to json
+    fs.writeFileSync('./users.json', json, { encoding: 'utf8', flag: 'w' });
+
+    var arrayimage = JSON.parse(fs.readFileSync('./data.json', 'UTF-8'));
+    console.log(arrayimage)
+    const filterArraydata = arrayimage.filter((item) => item.name !== req.cookies.LoggedIn);
+    console.log('Deleted')
+    console.log(filterArraydata)
+    json = JSON.stringify(filterArraydata); //convert it back to json
+    fs.writeFileSync('./data.json', json, { encoding: 'utf8', flag: 'w' });
+    res.clearCookie('LoggedIn')
+    req.method = 'get'; 
+    res.redirect('/'); 
+})
 
 
 
@@ -178,7 +207,6 @@ app.get('user/images/undo.png', function (req, res) {
 app.get('/images/back.png',function (req, res) {
     res.sendFile(__dirname + '/public/images/back.png')
 })
-
 
 
 

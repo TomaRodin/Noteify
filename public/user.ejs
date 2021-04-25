@@ -89,15 +89,27 @@
             border-radius: 10px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        .mark {
+    position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  }
+  .settings {
+    position: absolute;
+  }
 </style>
 
 <body>
-  <img src="images/logo.jpg" height="75" width="auto">
+  <a href="/user"><img src="images/logo.jpg" height="75" width="auto"></a>
 
   <a class="logout" href="/user/log_out">Log Out</a>
 
   <div class="border"></div>
   <br>
+
+  <a href="/user/settings" style="float: right; margin-right: 50px;" ><img src="/images/settings.png" height="50px" width="auto" class="settings"></a>
   
   <a href="/user/new" class="note">New Note</a>
   <input class="myInput" id="myInput" placeholder="MyNote...">
@@ -107,8 +119,13 @@
 
 
 
+  
 
 </body>
+
+  <div class="mark">
+    <p>Toma Rodin 🐯</p>
+  </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -140,7 +157,7 @@
         parentWrapper.appendChild(space)
         const edit = document.createElement('a')
         edit.textContent = "Edit"
-        edit.href = "/user/"+ el.id
+        edit.href = "/user/notes/"+ el.id
         div.appendChild(edit)
         parentWrapper.append(div);
       });

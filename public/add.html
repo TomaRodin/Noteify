@@ -22,24 +22,52 @@
         position:relative;
         top:1px;
       }
-      h3, a, button {
+      h3, a, button, p {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
+      .form {
+        text-align:center;
+      }
+      .title  {
+            height:30px;
+            font-size:14pt;
+            border: none; /* <-- This thing here */
+            border:solid 1px #ccc;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .back {
+  height: 70px;
+  width: auto;
+  position:absolute;
+
+}
+.mark {
+    position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  }
     </style>
     <body>
-        <img src="http://localhost:3000/images/logo.jpg" height="75" width="auto">
+      <a href="/user"><img src="/images/logo.jpg" height="75" width="auto"></a>
         <div class="border"></div>
+        <a href="/user"><img src="/images/back.png" class="back"></a>
 
-
-        <form id="reform">
+        <form id="reform" class="form">
             <h3>Title:</h3>
-            <input name="title">
+            <input name="title" class="title">
             <h3>Text:</h3>
             <textarea name="text"></textarea>
             <br>
             <br>
             <div class="button">Add</div>
         </form>
+
+        <div class="mark">
+          <p>Toma Rodin 🐯</p>
+          </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
