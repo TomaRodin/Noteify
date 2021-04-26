@@ -1,13 +1,11 @@
 <html>
     
     <style>
-      h3, a, button {
+      h3, a, button, p {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
-      h3, a, button {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
-      .user, .pass  {
+
+      .user, .pass, .confirmpass, .email  {
             height:30px;
             font-size:14pt;
             border: none; /* <-- This thing here */
@@ -59,8 +57,16 @@
       <input name="newuser" class="user" type="username">
       <br>
       <br>
+      <h3>E-mail:</h3>
+      <input name="email" class="email" type="email">
+      <br>
+      <br>
       <h3>Password:</h3>
       <input name="newpass" class="pass" type="password">
+      <br>
+      <br>
+      <h3>Confirm Password:</h3>
+      <input class="confirmpass" type="password">
       <br>
       <br>
       <button class="butt">Register</button>
@@ -79,12 +85,18 @@
     <script>
       $(document).ready(function(){
               $('.butt').click(function(){
+                var password = $( ".pass" ).val();
+                var confirmpass = $( ".confirmpass" ).val();
+                if ( password == confirmpass ){
                    $.post('/register',$('#reform').serialize()).done(
                      function(data){
                       if(data.redirect) {
                             window.location.href=data.url;
                            }
                       })
+                    } else {
+                      alert('Password and Confirm Password are diffrent')
+                    }
               })
           })
       </script>

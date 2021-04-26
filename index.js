@@ -57,11 +57,16 @@ app.post('/register', function (req, res) {
         return true;
     }
 
+    else if (JSONObject.includes(req.body.email)){
+        return true;
+    }
+
     else {
         var array = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
         array.push({
             "name": req.body.newuser,
-            "pass": req.body.newpass
+            "pass": req.body.newpass,
+            "mail": req.body.email
         })
         var jsonArray = JSON.stringify(array);
         fs.writeFileSync('./users.json', jsonArray, { encoding: 'utf8', flag: 'w' });
